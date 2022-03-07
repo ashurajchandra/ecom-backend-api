@@ -4,6 +4,7 @@ const app = express();
 const dotenv = require('dotenv');
 
 const userRoutes =  require ('./routes/user');
+const authRoutes = require("./routes/auth");
 dotenv.config();
 const port =3000;
 
@@ -17,7 +18,8 @@ app.get("/", (req,res)=>{
     res.send("hello world")
 })
 app.use(express.json())
-app.use("/api/users",userRoutes)
+app.use("/api/users",userRoutes);
+app.use("/api/users",authRoutes)
 
 app.listen(process.env.PORT ||port, ()=>{
     console.log(`app is running successfully on port ${port}`)
